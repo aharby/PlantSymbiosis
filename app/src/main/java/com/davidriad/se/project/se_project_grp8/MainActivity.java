@@ -7,17 +7,75 @@ import android.os.Bundle;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity {
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+
+public class MainActivity extends AppCompatActivity {
+    DatabaseReference plantDBRef;
+
+    private ArrayList<PlantModel> plantsList = new ArrayList<>();
+    private PlantsAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FirebaseDatabase plantDatabase = FirebaseDatabase.getInstance();
+         plantDBRef = plantDatabase.getReference("/plants");
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue("Hello, World!");
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        mAdapter = new PlantsAdapter(plantsList,getApplicationContext());
+        recyclerView.setAdapter(mAdapter);
+        preparePlantData();
+
     }
+
+
+    private void preparePlantData() {
+
+
+        plantDBRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot dataSnapshot) {
+                //clearing the previous plant list
+                plantsList.clear();
+
+                //iterating through all the nodes
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    //getting plant
+                    PlantModel plant =  postSnapshot.getValue(PlantModel.class);
+                    //adding plant to the list
+                    plantsList.add(plant);
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+
 }
