@@ -18,12 +18,11 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
     private Activity context;
     private List<PlantModel> plantsList;
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView name, sci_name, helps;
+        TextView name, description;
         MyViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.name);
-            sci_name = view.findViewById(R.id.sci_name);
-            helps = view.findViewById(R.id.helps);
+            description = view.findViewById(R.id.descriotion);
         }
     }
     public PlantsAdapter(List<PlantModel> plantsList, Context contex) {
@@ -35,15 +34,14 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.plant_list, parent, false);
+                .inflate(R.layout.planet_item, parent, false);
         return new MyViewHolder(itemView);
     }
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         PlantModel plant = plantsList.get(position);
         holder.name.setText(plant.getName());
-//        holder.sci_name.setText(movie.getScientific_name());
-//        holder.helps.setText(movie.getHelps());
+        holder.description.setText(plant.getDescription());
     }
     @Override
     public int getItemCount() {
