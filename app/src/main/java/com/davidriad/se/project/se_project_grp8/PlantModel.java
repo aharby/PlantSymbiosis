@@ -2,8 +2,8 @@ package com.davidriad.se.project.se_project_grp8;
 
 public class PlantModel {
     private String id;
-    private String name;
-    private String description;
+    private static String name;
+    private static String description;
     private String image;
 
     public PlantModel() {
@@ -36,11 +36,11 @@ public class PlantModel {
         return id;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
-    public String getDescription() {
+    public static String getDescription() {
         return description;
     }
 
