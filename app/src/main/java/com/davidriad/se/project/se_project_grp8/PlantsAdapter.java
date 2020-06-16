@@ -3,9 +3,11 @@ package com.davidriad.se.project.se_project_grp8;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +21,13 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
     private List<PlantModel> plantsList;
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name, description;
+        RelativeLayout relative;
+
         MyViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.name);
-            description = view.findViewById(R.id.descriotion);
+            description = view.findViewById(R.id.description);
+            relative = itemView.findViewById(R.id.relative);
         }
     }
     public PlantsAdapter(List<PlantModel> plantsList, Context contex) {
@@ -42,6 +47,17 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
         PlantModel plant = plantsList.get(position);
         holder.name.setText(plant.getName());
         holder.description.setText(plant.getDescription());
+        holder.relative.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(context,PlantModel.class);
+                intent.putExtra("name",PlantModel.getName());
+                intent.putExtra("description",PlantModel.getDescription());
+                context.startActivity(intent);
+            }
+
+        });
+
     }
     @Override
     public int getItemCount() {
