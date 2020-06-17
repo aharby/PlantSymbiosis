@@ -19,15 +19,14 @@ import java.util.List;
 public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHolder> {
     private Activity context;
     private List<PlantModel> plantsList;
+
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name, description;
-        RelativeLayout relative;
 
         MyViewHolder(View view) {
             super(view);
-            name = view.findViewById(R.id.name);
-            description = view.findViewById(R.id.description);
-            relative = itemView.findViewById(R.id.relative);
+            name =  (TextView) view.findViewById(R.id.name);
+            description = (TextView) view.findViewById(R.id.description);
         }
     }
     public PlantsAdapter(List<PlantModel> plantsList, Context contex) {
@@ -45,19 +44,18 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         PlantModel plant = plantsList.get(position);
-        holder.name.setText(plant.getName());
         holder.description.setText(plant.getDescription());
-        holder.relative.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(context,PlantModel.class);
-                intent.putExtra("name",PlantModel.getName());
-                intent.putExtra("description",PlantModel.getDescription());
-                context.startActivity(intent);
-            }
-
-        });
-
+        holder.name.setText(plant.getName());
+//        holder.relative.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                Intent intent = new Intent(context,PlantModel.class);
+//                intent.putExtra("name",PlantModel.getName());
+//                intent.putExtra("description",PlantModel.getDescription());
+//                context.startActivity(intent);
+//            }
+//
+//        });
     }
     @Override
     public int getItemCount() {
