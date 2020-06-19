@@ -3,7 +3,9 @@ package com.davidriad.se.project.se_project_grp8;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseDatabase plantDatabase = FirebaseDatabase.getInstance();
-         plantDBRef = plantDatabase.getReference("/plants");
+        plantDBRef = plantDatabase.getReference("/plants");
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -46,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         preparePlantData();
 
+        // when fab is clicked the activity_add_plant activity will show up to fill in the details abput the plant
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // open the add plant activity
+                setContentView(R.layout.activity_add_plant);
+            }
+        });
     }
 
 
