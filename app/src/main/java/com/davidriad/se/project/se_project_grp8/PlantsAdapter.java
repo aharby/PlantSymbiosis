@@ -3,48 +3,71 @@ package com.davidriad.se.project.se_project_grp8;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHolder> {
-    private Activity context;
+    private Context context;
     private List<PlantModel> plantsList;
+
+    public void filterList(ArrayList<PlantModel> filteredList) {
+        plantsList = filteredList;
+        notifyDataSetChanged();
+    }
+
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView name, sci_name, helps;
+        TextView name, description;
+
         MyViewHolder(View view) {
             super(view);
-            name = view.findViewById(R.id.name);
-            sci_name = view.findViewById(R.id.sci_name);
-            helps = view.findViewById(R.id.helps);
+            name = (TextView) view.findViewById(R.id.name);
+            description = (TextView) view.findViewById(R.id.description);
         }
     }
-    public PlantsAdapter(List<PlantModel> plantsList, Context contex) {
+
+    public PlantsAdapter(List<PlantModel> plantsList, Context context) {
 
         this.plantsList = plantsList;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.plant_list, parent, false);
+                .inflate(R.layout.planet_item, parent, false);
         return new MyViewHolder(itemView);
     }
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        PlantModel plant = plantsList.get(position);
+        final PlantModel plant = plantsList.get(position);
+        holder.description.setText(plant.getDescription());
         holder.name.setText(plant.getName());
-//        holder.sci_name.setText(movie.getScientific_name());
-//        holder.helps.setText(movie.getHelps());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, Content.class);
+                intent.putExtra("name", plant.getName());
+                intent.putExtra("description", plant.getDescription());
+                context.startActivity(intent);
+            }
+
+        });
     }
+
     @Override
     public int getItemCount() {
         return plantsList.size();
