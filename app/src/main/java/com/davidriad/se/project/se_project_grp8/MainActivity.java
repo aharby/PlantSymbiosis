@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        mAdapter = new PlantsAdapter(plantsList,getApplicationContext());
+        mAdapter = new PlantsAdapter(plantsList,this);
         recyclerView.setAdapter(mAdapter);
         preparePlantData();
 
