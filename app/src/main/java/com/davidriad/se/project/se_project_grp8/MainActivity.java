@@ -1,6 +1,9 @@
 package com.davidriad.se.project.se_project_grp8;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        EditText search = findViewById(R.id.search);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -39,6 +44,35 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         preparePlantData();
 
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+
+            }
+        });
+    }
+
+    private void filter(String text) {
+        ArrayList<PlantModel> filteredList = new ArrayList<> ();
+        for (PlantModel plant : plantsList) {
+            if ((plant.getName().toLowerCase())
+                    .contains(text.toLowerCase())) {
+                filteredList.add(plant);
+            }
+        }
+        mAdapter.filterList(filteredList);
     }
 
 
