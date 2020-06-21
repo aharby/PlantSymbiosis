@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //FirebaseDatabase plantDatabase = FirebaseDatabase.getInstance();
-        // plantDBRef = plantDatabase.getReference("/plants");
+        FirebaseDatabase plantDatabase = FirebaseDatabase.getInstance();
+        plantDBRef = plantDatabase.getReference("/plants");
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
