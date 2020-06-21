@@ -6,20 +6,19 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class Content extends AppCompatActivity {
-    TextView name,description;
-    String plantname, plantdescription;
+    TextView nameTv, descriptionTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
-        name.findViewById(R.id.name);
-        description.findViewById(R.id.description);
-        plantname = getIntent().getStringExtra("name");
-        plantdescription = getIntent().getStringExtra("description");
-        name.setText(plantname);
-        description.setText(plantdescription);
+//        nameTv = (TextView) findViewById(R.id.name);
+        descriptionTv = (TextView) findViewById(R.id.description);
 
+        String plantname = getIntent().getStringExtra("name");
+        String plantdescription = getIntent().getStringExtra("description");
 
+//        nameTv.setText(plantname.toString());
+        descriptionTv.setText(plantdescription);
     }
 }

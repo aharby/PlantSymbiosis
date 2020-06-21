@@ -9,29 +9,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHolder> {
-    private Activity context;
+    private Context context;
     private List<PlantModel> plantsList;
+
+    public void filterList(ArrayList<PlantModel> filteredList) {
+        plantsList = filteredList;
+        notifyDataSetChanged();
+    }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name, description;
 
         MyViewHolder(View view) {
             super(view);
-            name =  (TextView) view.findViewById(R.id.name);
+            name = (TextView) view.findViewById(R.id.name);
             description = (TextView) view.findViewById(R.id.description);
         }
     }
-    public PlantsAdapter(List<PlantModel> plantsList, Context contex) {
+
+    public PlantsAdapter(List<PlantModel> plantsList, Context context) {
 
         this.plantsList = plantsList;
+        this.context = context;
     }
 
     @NonNull
@@ -41,22 +50,24 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
                 .inflate(R.layout.planet_item, parent, false);
         return new MyViewHolder(itemView);
     }
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        PlantModel plant = plantsList.get(position);
+        final PlantModel plant = plantsList.get(position);
         holder.description.setText(plant.getDescription());
         holder.name.setText(plant.getName());
-//        holder.relative.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(context,PlantModel.class);
-//                intent.putExtra("name",PlantModel.getName());
-//                intent.putExtra("description",PlantModel.getDescription());
-//                context.startActivity(intent);
-//            }
-//
-//        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, Content.class);
+                intent.putExtra("name", plant.getName());
+                intent.putExtra("description", plant.getDescription());
+                context.startActivity(intent);
+            }
+
+        });
     }
+
     @Override
     public int getItemCount() {
         return plantsList.size();

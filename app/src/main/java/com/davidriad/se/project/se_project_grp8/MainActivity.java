@@ -1,7 +1,6 @@
 package com.davidriad.se.project.se_project_grp8;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,15 +39,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         preparePlantData();
 
-        // when fab is clicked the activity_add_plant activity will show up to fill in the details abput the plant
-        FloatingActionButton fab = findViewById(R.id.floatingActionButton4);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // open the add plant activity
-                setContentView(R.layout.activity_add_plant);
-            }
-        });
     }
 
 
