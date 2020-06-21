@@ -7,42 +7,28 @@
     tools:context=".AddPlant">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Plant ID"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.257"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
+        android:id="@+id/editTextPlantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Plant Name"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="65dp"
-        android:layout_height="35dp"
-        android:text="OK"
+        android:id="@+id/buttonAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPlantName"
+        app:layout_constraintVertical_bias="0.067" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
