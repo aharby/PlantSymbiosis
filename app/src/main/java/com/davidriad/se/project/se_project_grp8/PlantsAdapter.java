@@ -7,12 +7,15 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +32,13 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name, description;
+        ImageView imageView;
 
         MyViewHolder(View view) {
             super(view);
             name = (TextView) view.findViewById(R.id.name);
             description = (TextView) view.findViewById(R.id.description);
+            imageView = (ImageView) view.findViewById(R.id.imageView);
         }
     }
 
@@ -56,6 +61,11 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
         final PlantModel plant = plantsList.get(position);
         holder.description.setText(plant.getDescription());
         holder.name.setText(plant.getName());
+        Glide
+                .with(context)
+                .load(plant.getImage())
+                .centerCrop()
+                .into(holder.imageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
