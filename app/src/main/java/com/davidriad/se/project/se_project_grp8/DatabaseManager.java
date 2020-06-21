@@ -19,7 +19,7 @@ public class DatabaseManager {
         plant.setDescription(plantDescription);
 
         //
-        plantDBref.child("/plants").child(plant.getId()).setValue(plant.getName(), plant.getDescription());
+        plantDBref.child("/plants").child(plant.getId()).setValue(plant.getName(),plant.getDescription());
 
     }
 
