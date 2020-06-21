@@ -14,7 +14,7 @@ public class PlantModel {
         this.description = description;
     }
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -22,7 +22,7 @@ public class PlantModel {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -30,7 +30,7 @@ public class PlantModel {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -38,7 +38,7 @@ public class PlantModel {
     }
 
     public String getImage() {
-        return image;
+        return this.image;
     }
 
     public void setImage(String image) {
