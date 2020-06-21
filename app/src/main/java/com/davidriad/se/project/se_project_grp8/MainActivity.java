@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //FirebaseDatabase plantDatabase = FirebaseDatabase.getInstance();
-        //plantDBRef = plantDatabase.getReference("/plants");
+        FirebaseDatabase plantDatabase = FirebaseDatabase.getInstance();
+        plantDBRef = plantDatabase.getReference("/plants");
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new PlantsAdapter(plantsList,getApplicationContext());
         recyclerView.setAdapter(mAdapter);
-        //preparePlantData();
+        preparePlantData();
 
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-/*
     private void preparePlantData() {
 
 
@@ -80,5 +79,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-*/
 }
