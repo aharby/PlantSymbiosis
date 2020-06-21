@@ -10,6 +10,7 @@ public class DatabaseManager {
     public void getReference(){
         plantDatabase = FirebaseDatabase.getInstance();
         plantDBref = plantDatabase.getReference("/plants");
+
     }
 
     public void addToDB(String plantID, String plantName, String plantDescription){
@@ -17,6 +18,7 @@ public class DatabaseManager {
         plant.setId(plantID);
         plant.setName(plantName);
         plant.setDescription(plantDescription);
+
 
         //
         plantDBref.child("plants").setValue(plant);

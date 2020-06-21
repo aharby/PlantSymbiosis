@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class AddPlant extends AppCompatActivity {
 
     @Override
@@ -24,11 +27,12 @@ public class AddPlant extends AppCompatActivity {
                 String plantID = (String) textViewPlantID.getText();
                 String plantName = (String) textViewPlantName.getText();
 
-                DatabaseManager dbmanager = new DatabaseManager();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = database.getReference("/plants");
 
-                dbmanager.getReference();
-                dbmanager.addToDB(plantID,plantName, "description");
+                PlantModel plant = new PlantModel(plantID, plantName, "description");
 
+                databaseReference.setValue(plant);
             }
         });
     }
