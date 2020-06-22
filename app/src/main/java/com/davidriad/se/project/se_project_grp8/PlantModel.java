@@ -1,10 +1,15 @@
 package com.davidriad.se.project.se_project_grp8;
 
+import java.util.ArrayList;
+
 public class PlantModel {
     private String id;
     private String name;
     private String description;
     private String image;
+    private ArrayList<String> helps;
+    private ArrayList<String> helpedBy;
+    private ArrayList<String> avoid;
 
     public PlantModel() {
     }
