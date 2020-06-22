@@ -16,7 +16,7 @@ import java.util.UUID;
 public class AddPlant extends AppCompatActivity {
 
     Button addButton;
-    EditText plantNameEditText, plantIdEditText;
+    EditText plantNameEditText, plantDescriptionEditText, plantImageUrlEditText;
     FirebaseDatabase databaseInstance;
     DatabaseReference plantNode;
 
@@ -26,8 +26,9 @@ public class AddPlant extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plant);
 
-        plantIdEditText = (EditText) findViewById(R.id.editTextId);
         plantNameEditText = (EditText) findViewById(R.id.editTextName);
+        plantDescriptionEditText = (EditText) findViewById(R.id.editTextDescription);
+        plantImageUrlEditText = (EditText) findViewById(R.id.editTextImageUrl);
         addButton = (Button) findViewById(R.id.button);
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -35,10 +36,10 @@ public class AddPlant extends AppCompatActivity {
             public void onClick(View view) {
 
                 String name = plantNameEditText.getText().toString();
+                String description = plantDescriptionEditText.getText().toString();
+                String image = plantImageUrlEditText.getText().toString();
 
-                String image = "https://www.boeschbodenspies.com/wp-content/uploads/2017/08/tomato.png";
                 String id = String.valueOf(UUID.randomUUID());
-                String description = "description";
 
                 PlantModel plant = new PlantModel(id, name, description, image);
 
