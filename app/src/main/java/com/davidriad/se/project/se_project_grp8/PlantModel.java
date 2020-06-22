@@ -1,9 +1,25 @@
 package com.davidriad.se.project.se_project_grp8;
 
+import java.util.ArrayList;
+
 public class PlantModel {
     private String id;
     private String name;
     private String description;
+    private String image;
+    private ArrayList<String> helps;
+    private ArrayList<String> helpedBy;
+    private ArrayList<String> avoid;
+
+    public PlantModel() {
+    }
+
+    public PlantModel(String id, String name, String description, String image) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.image = image;
+    }
 
     public String getId() {
         return id;
@@ -37,7 +53,6 @@ public class PlantModel {
         this.image = image;
     }
 
-    private String image;
 
 
 }
