@@ -1,5 +1,6 @@
 package com.davidriad.se.project.se_project_grp8;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -70,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_add_plant);
+                Intent intent = new Intent(getApplicationContext(), AddPlant.class);
+                startActivity(intent);
             }
         });
 
