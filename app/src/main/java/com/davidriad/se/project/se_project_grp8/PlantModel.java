@@ -37,11 +37,14 @@ public class PlantModel {
         this.avoid = avoid;
     }
 
-    public PlantModel(String id, String name, String description, String image) {
+    public PlantModel(String id, String name, String description, String image,ArrayList<String>helps,ArrayList<String> helpedBy,ArrayList<String> avoid) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
+        this.helps=helps;
+        this.helpedBy=helpedBy;
+        this.avoid=avoid;
     }
 
     public String getId() {
