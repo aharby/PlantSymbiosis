@@ -13,6 +13,29 @@ public class PlantModel {
 
     public PlantModel() {
     }
+    public ArrayList<String> getHelps() {
+        return helps;
+    }
+
+    public void setHelps(ArrayList<String> helps) {
+        this.helps = helps;
+    }
+
+    public ArrayList<String> getHelpedBy() {
+        return helpedBy;
+    }
+
+    public void setHelpedBy(ArrayList<String> helpedBy) {
+        this.helpedBy = helpedBy;
+    }
+
+    public ArrayList<String> getAvoid() {
+        return avoid;
+    }
+
+    public void setAvoid(ArrayList<String> avoid) {
+        this.avoid = avoid;
+    }
 
     public PlantModel(String id, String name, String description, String image) {
         this.id = id;
