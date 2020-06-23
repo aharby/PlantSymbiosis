@@ -1,9 +1,39 @@
 package com.davidriad.se.project.se_project_grp8;
 
+import java.util.ArrayList;
+
 public class PlantModel {
     private String id;
     private String name;
     private String description;
+    private ArrayList<String> helps;
+    private ArrayList<String> helpedBy;
+    private ArrayList<String> avoid;
+
+    public ArrayList<String> getAvoid() {
+        return avoid;
+    }
+
+    public void setAvoid(ArrayList<String> avoid) {
+        this.avoid = avoid;
+    }
+
+    public ArrayList<String> getHelpedBy() {
+        return helpedBy;
+    }
+
+    public void setHelpedBy(ArrayList<String> helpedBy) {
+        this.helpedBy = helpedBy;
+    }
+
+    public ArrayList<String> getHelps() {
+        return helps;
+    }
+
+    public void setHelps(ArrayList<String> helps) {
+        this.helps = helps;
+    }
+
 
     public String getId() {
         return id;
