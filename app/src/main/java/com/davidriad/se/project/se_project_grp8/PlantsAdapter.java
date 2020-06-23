@@ -72,6 +72,10 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
                 Intent intent = new Intent(context, Content.class);
                 intent.putExtra("name", plant.getName());
                 intent.putExtra("description", plant.getDescription());
+                intent.putExtra("image",plant.getImage());
+                intent.putStringArrayListExtra("helps",plant.getHelps());
+                intent.putStringArrayListExtra("helpedBy",plant.getHelpedBy());
+                intent.putStringArrayListExtra("avoid",plant.getAvoid());
                 context.startActivity(intent);
             }
 
