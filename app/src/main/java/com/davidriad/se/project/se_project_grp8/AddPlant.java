@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class AddPlant extends AppCompatActivity {
@@ -40,14 +41,19 @@ public class AddPlant extends AppCompatActivity {
                 String image = plantImageUrlEditText.getText().toString();
 
                 String id = String.valueOf(UUID.randomUUID());
-
-                PlantModel plant = new PlantModel(id, name, description, image);
+                ArrayList<String> helpsAray = new ArrayList<String>();
+                helpsAray.add("");
+                ArrayList<String> helpbedByArray = new ArrayList<String>();
+                helpbedByArray.add("");
+                ArrayList<String> avoidArray = new ArrayList<String>();
+                avoidArray.add("");
+                PlantModel plant = new PlantModel(id, name, description, image, helpsAray,helpbedByArray,avoidArray);
 
                 databaseInstance = FirebaseDatabase.getInstance();
                 plantNode = databaseInstance.getReference("/plants");
                 plantNode.child(id).setValue(plant);
 
-                Toast.makeText(getApplicationContext(),"you have added a plant", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "you have added a plant", Toast.LENGTH_LONG).show();
             }
         });
 
