@@ -82,12 +82,14 @@ public class AddPlant extends AppCompatActivity {
         addPlant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(helpsArray.size() != 0 && helpedByArray.size() != 0 && avoidArray.size() !=0 ){
-                    String name = plantNameEditText.getText().toString();
-                    String description = plantDescriptionEditText.getText().toString();
-                    String image = plantImageUrlEditText.getText().toString();
 
-                    String id = String.valueOf(UUID.randomUUID());
+                String name = plantNameEditText.getText().toString();
+                String description = plantDescriptionEditText.getText().toString();
+                String image = plantImageUrlEditText.getText().toString();
+                String id = String.valueOf(UUID.randomUUID());
+
+                if( !name.isEmpty() && helpsArray.size() != 0 && helpedByArray.size() != 0 && avoidArray.size() !=0){
+
                     PlantModel plant = new PlantModel(id, name, description, image, helpsArray, helpedByArray, avoidArray);
 
                     databaseInstance = FirebaseDatabase.getInstance();
@@ -103,7 +105,7 @@ public class AddPlant extends AppCompatActivity {
                     avoidArray.clear();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Make sure you entered data to all fields", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Make sure you entered data", Toast.LENGTH_LONG).show();
                 }
             }
         });
