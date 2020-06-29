@@ -88,7 +88,7 @@ public class AddPlant extends AppCompatActivity {
                     String image = plantImageUrlEditText.getText().toString();
 
                     String id = String.valueOf(UUID.randomUUID());
-                    PlantModel plant = new PlantModel(id, name, description, image, helpsAray, helpedByArray, avoidArray);
+                    PlantModel plant = new PlantModel(id, name, description, image, helpsArray, helpedByArray, avoidArray);
 
                     databaseInstance = FirebaseDatabase.getInstance();
                     plantNode = databaseInstance.getReference("/plants");
