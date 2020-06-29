@@ -16,12 +16,12 @@ import java.util.UUID;
 
 public class AddPlant extends AppCompatActivity {
 
-    Button addPlant,buttonAdd,buttonAddHelped,buttonAvoid;
+    Button addPlant,buttonAddHelps,buttonAddHelpedBy,buttonAvoid;
     EditText plantNameEditText, plantDescriptionEditText, plantImageUrlEditText, helps, helpedBy, avoidET;
     FirebaseDatabase databaseInstance;
     DatabaseReference plantNode;
 
-    ArrayList<String> helpsAray = new ArrayList<String>();
+    ArrayList<String> helpsArray = new ArrayList<String>();
     ArrayList<String> helpedByArray = new ArrayList<String>();
     ArrayList<String> avoidArray = new ArrayList<String>();
 
@@ -38,23 +38,27 @@ public class AddPlant extends AppCompatActivity {
         helpedBy = (EditText) findViewById(R.id.helpedBy);
         avoidET = (EditText) findViewById(R.id.avoid);
 
-        buttonAdd = (Button) findViewById(R.id.buttonAdd);
-        buttonAddHelped = (Button) findViewById(R.id.buttonAddHelped);
+        buttonAddHelps = (Button) findViewById(R.id.buttonAdd);
+        buttonAddHelpedBy = (Button) findViewById(R.id.buttonAddHelped);
         buttonAvoid = (Button) findViewById(R.id.buttonAvoid);
 
         //help
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
+        buttonAddHelps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!helps.getText().equals("")){
-                    helpsAray.add(helps.getText().toString());
+                    helpsArray.add(helps.getText().toString());
                 }
                 helps.setText("");
             }
         });
 
         //helped by
-        buttonAddHelped.setOnClickListener(new View.OnClickListener() {
+        buttonAddHelpedBy.setOnClickListener(
+
+
+
+                new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!helpedBy.getText().equals("")){
@@ -78,7 +82,7 @@ public class AddPlant extends AppCompatActivity {
         addPlant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(helpsAray.size() != 0 && helpedByArray.size() != 0 && avoidArray.size() !=0 ){
+                if(helpsArray.size() != 0 && helpedByArray.size() != 0 && avoidArray.size() !=0 ){
                     String name = plantNameEditText.getText().toString();
                     String description = plantDescriptionEditText.getText().toString();
                     String image = plantImageUrlEditText.getText().toString();
@@ -94,7 +98,7 @@ public class AddPlant extends AppCompatActivity {
                     plantNameEditText.setText("");
                     plantDescriptionEditText.setText("");
                     plantImageUrlEditText.setText("");
-                    helpsAray.clear();
+                    helpsArray.clear();
                     helpedByArray.clear();
                     avoidArray.clear();
                 }
