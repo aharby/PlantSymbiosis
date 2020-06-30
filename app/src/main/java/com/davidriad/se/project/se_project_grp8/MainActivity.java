@@ -26,6 +26,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseReference plantDBRef;
+    DataBaseManager dBManager;
 
     private ArrayList<PlantModel> plantsList = new ArrayList<>();
     private PlantsAdapter mAdapter;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase plantDatabase = FirebaseDatabase.getInstance();
         plantDBRef = plantDatabase.getReference("/plants");
 
+        dBManager = new DataBaseManager();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         EditText search = findViewById(R.id.search);
@@ -45,13 +47,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new PlantsAdapter(plantsList,this);
         recyclerView.setAdapter(mAdapter);
-        preparePlantData();
-
+        dBManager.viewData(mAdapter, plantsList);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -88,35 +88,5 @@ public class MainActivity extends AppCompatActivity {
         }
         mAdapter.filterList(filteredList);
     }
-
-
-    private void preparePlantData() {
-
-
-        plantDBRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull  DataSnapshot dataSnapshot) {
-                //clearing the previous plant list
-                plantsList.clear();
-
-                //iterating through all the nodes
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    //getting plant
-                    PlantModel plant =  postSnapshot.getValue(PlantModel.class);
-                    //adding plant to the list
-                    plantsList.add(plant);
-                }
-                mAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-    }
-
 
 }
