@@ -16,12 +16,12 @@ import java.util.UUID;
 
 public class AddPlant extends AppCompatActivity {
 
-    Button addPlant,buttonAdd,buttonAddHelped,buttonAvoid;
+    Button buttonAddPlant,buttonAddHelps,buttonAddHelpedBy,buttonAvoid;
     EditText plantNameEditText, plantDescriptionEditText, plantImageUrlEditText, helps, helpedBy, avoidET;
     FirebaseDatabase databaseInstance;
     DatabaseReference plantNode;
-
-    ArrayList<String> helpsAray = new ArrayList<String>();
+    DataBaseManager dbManager  ;
+    ArrayList<String> helpsArray = new ArrayList<String>();
     ArrayList<String> helpedByArray = new ArrayList<String>();
     ArrayList<String> avoidArray = new ArrayList<String>();
 
@@ -30,31 +30,33 @@ public class AddPlant extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plant);
 
+        dbManager = new DataBaseManager();
         plantNameEditText = (EditText) findViewById(R.id.editTextName);
         plantDescriptionEditText = (EditText) findViewById(R.id.editTextDescription);
         plantImageUrlEditText = (EditText) findViewById(R.id.editTextImageUrl);
-        addPlant = (Button) findViewById(R.id.button);
+        buttonAddPlant = (Button) findViewById(R.id.button);
         helps = (EditText) findViewById(R.id.helps);
         helpedBy = (EditText) findViewById(R.id.helpedBy);
         avoidET = (EditText) findViewById(R.id.avoid);
 
-        buttonAdd = (Button) findViewById(R.id.buttonAdd);
-        buttonAddHelped = (Button) findViewById(R.id.buttonAddHelped);
+        buttonAddHelps = (Button) findViewById(R.id.buttonAdd);
+        buttonAddHelpedBy = (Button) findViewById(R.id.buttonAddHelped);
         buttonAvoid = (Button) findViewById(R.id.buttonAvoid);
 
         //help
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
+        buttonAddHelps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!helps.getText().equals("")){
-                    helpsAray.add(helps.getText().toString());
+                    helpsArray.add(helps.getText().toString());
                 }
                 helps.setText("");
             }
         });
 
         //helped by
-        buttonAddHelped.setOnClickListener(new View.OnClickListener() {
+        buttonAddHelpedBy.setOnClickListener(
+                new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!helpedBy.getText().equals("")){
@@ -75,35 +77,40 @@ public class AddPlant extends AppCompatActivity {
             }
         });
 
-        addPlant.setOnClickListener(new View.OnClickListener() {
+        buttonAddPlant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(helpsAray.size() != 0 && helpedByArray.size() != 0 && avoidArray.size() !=0 ){
-                    String name = plantNameEditText.getText().toString();
-                    String description = plantDescriptionEditText.getText().toString();
-                    String image = plantImageUrlEditText.getText().toString();
 
-                    String id = String.valueOf(UUID.randomUUID());
-                    PlantModel plant = new PlantModel(id, name, description, image, helpsAray, helpedByArray, avoidArray);
+                String name = plantNameEditText.getText().toString();
+                String description = plantDescriptionEditText.getText().toString();
+                String image = plantImageUrlEditText.getText().toString();
+                String id = String.valueOf(UUID.randomUUID());
 
-                    databaseInstance = FirebaseDatabase.getInstance();
-                    plantNode = databaseInstance.getReference("/plants");
-                    plantNode.child(id).setValue(plant);
+                PlantModel plant = new PlantModel(id, name, description, image, helpsArray, helpedByArray, avoidArray);
 
-                    Toast.makeText(getApplicationContext(), "you have added a plant", Toast.LENGTH_LONG).show();
-                    plantNameEditText.setText("");
-                    plantDescriptionEditText.setText("");
-                    plantImageUrlEditText.setText("");
-                    helpsAray.clear();
-                    helpedByArray.clear();
-                    avoidArray.clear();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Make sure you entered data to all fields", Toast.LENGTH_LONG).show();
-                }
+                addPlant(plant);
+
             }
         });
 
+    }
+
+    private void addPlant(PlantModel plant) {
+        if( !plant.getName().isEmpty() && helpsArray.size() != 0 && helpedByArray.size() != 0 && avoidArray.size() !=0){
+
+            dbManager.insert(plant);
+            Toast.makeText(getApplicationContext(), "you have added a plant", Toast.LENGTH_LONG).show();
+
+            plantNameEditText.setText("");
+            plantDescriptionEditText.setText("");
+            plantImageUrlEditText.setText("");
+            helpsArray.clear();
+            helpedByArray.clear();
+            avoidArray.clear();
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Make sure you entered data", Toast.LENGTH_LONG).show();
+        }
     }
 }
 
