@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,12 +21,16 @@ public class Content extends AppCompatActivity {
     TextView nameTv, descriptionTv;
     ImageView backArrow, details_image;
     TabLayout tabLayout;
+    Button buttonDelete;
+    DataBaseManager dBManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
 //        nameTv = (TextView) findViewById(R.id.name);
+        dBManager = new DataBaseManager();
+        buttonDelete = (Button) findViewById(R.id.buttonDelete);
         backArrow = (ImageView) findViewById(R.id.backArrow);
         details_image = (ImageView) findViewById(R.id.details_plant_image);
 
@@ -35,6 +40,13 @@ public class Content extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String plantId = getIntent().getStringExtra("id");
+                dBManager.remove(plantId);
+            }
+        });
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,7 +54,7 @@ public class Content extends AppCompatActivity {
             }
         });
 
-        String plantname = getIntent().getStringExtra("name");
+        String plantName = getIntent().getStringExtra("name");
         String plantdescription = getIntent().getStringExtra("description");
         String plantImage = getIntent().getStringExtra("image");
         Glide.with(this)
@@ -52,7 +64,7 @@ public class Content extends AppCompatActivity {
         ArrayList<String> helps = getIntent().getStringArrayListExtra("helps");
         ArrayList<String> helpedBy = getIntent().getStringArrayListExtra("helpedBy");
         ArrayList<String> avoid = getIntent().getStringArrayListExtra("avoid");
-        textView.setText(plantname);
+        textView.setText(plantName);
 
         //helps recycler view
         RecyclerView helpsRecyclerView = findViewById(R.id.rvHelps);

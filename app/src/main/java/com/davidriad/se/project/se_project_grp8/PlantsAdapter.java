@@ -70,6 +70,7 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Content.class);
+                intent.putExtra("id", plant.getId());
                 intent.putExtra("name", plant.getName());
                 intent.putExtra("description", plant.getDescription());
                 intent.putExtra("image",plant.getImage());

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="right"
     app:behavior_hideable="false"
     app:behavior_peekHeight="420dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
@@ -20,32 +21,32 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="@android:color/transparent"
-            app:titleEnabled="false"
-            >
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/mainlayout"
-                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                app:layout_collapseMode="parallax"
-                android:scaleType="centerCrop">
-            <ImageView
-                android:id="@+id/details_plant_image"
-                android:layout_width="match_parent"
-                android:layout_height="360dp"></ImageView>
+                android:orientation="horizontal"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax">
+
+                <ImageView
+                    android:id="@+id/details_plant_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"></ImageView>
             </LinearLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/mToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:theme="@style/ToolbarTheme"
                 app:elevation="0dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
                 >
 
@@ -54,9 +55,8 @@
                     android:layout_width="24dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="left"
-                    android:src="@drawable/ic_left"
                     android:layout_marginRight="8dp"
-                    >
+                    android:src="@drawable/ic_left">
 
 
                 </ImageView>
@@ -65,8 +65,21 @@
                     android:id="@+id/plantName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="this is a text"/>
+                    android:text="this is a text" />
             </androidx.appcompat.widget.Toolbar>
+
+            <Button
+                android:id="@+id/buttonDelete"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="#ffffff"
+                android:drawableRight="@android:drawable/ic_menu_delete"
+                android:drawableTint="#152206"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -78,8 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
         <LinearLayout
@@ -96,12 +108,12 @@
                 android:id="@+id/cardViewBottomSheet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="-64dp"
                 android:background="#ffffff"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical"
                 app:behavior_hideable="true"
                 app:behavior_peekHeight="100dp"
-                android:layout_marginBottom="-64dp"
 
                 >
 
@@ -110,6 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#ffffff">
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -122,11 +135,11 @@
                             android:layout_width="72dp"
                             android:layout_height="4dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="8dp"
                             android:background="#eaebf1"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:layout_marginTop="8dp"/>
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/helps"
@@ -152,8 +165,7 @@
                             app:layout_constraintEnd_toEndOf="@id/guideline2"
                             app:layout_constraintStart_toStartOf="@id/guideline"
                             app:layout_constraintTop_toBottomOf="@+id/helps"
-                            tools:listitem="@layout/item_relation_right"
-                            >
+                            tools:listitem="@layout/item_relation_right">
 
                         </androidx.recyclerview.widget.RecyclerView>
 
@@ -161,6 +173,7 @@
                             android:id="@+id/helpedBy"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:text="Helped by"
                             android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -168,8 +181,7 @@
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="@id/guideline"
                             app:layout_constraintTop_toBottomOf="@+id/rvHelps"
-                            app:layout_constraintVertical_bias="0.072"
-                            android:layout_marginTop="8dp"/>
+                            app:layout_constraintVertical_bias="0.072" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvHelpedBy"
@@ -180,8 +192,7 @@
                             android:orientation="vertical"
                             app:layout_constraintEnd_toEndOf="@id/guideline2"
                             app:layout_constraintStart_toStartOf="@id/guideline"
-                            app:layout_constraintTop_toBottomOf="@+id/helpedBy"
-                            >
+                            app:layout_constraintTop_toBottomOf="@+id/helpedBy">
 
                         </androidx.recyclerview.widget.RecyclerView>
 
@@ -189,6 +200,7 @@
                             android:id="@+id/avoid"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:text="Avoid"
                             android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -196,8 +208,7 @@
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="@id/guideline"
                             app:layout_constraintTop_toBottomOf="@+id/rvHelpedBy"
-                            app:layout_constraintVertical_bias="0.072"
-                            android:layout_marginTop="8dp"/>
+                            app:layout_constraintVertical_bias="0.072" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvAvoid"
@@ -208,10 +219,10 @@
                             android:orientation="vertical"
                             app:layout_constraintEnd_toEndOf="@id/guideline2"
                             app:layout_constraintStart_toStartOf="@id/guideline"
-                            app:layout_constraintTop_toBottomOf="@+id/avoid"
-                            >
+                            app:layout_constraintTop_toBottomOf="@+id/avoid">
 
                         </androidx.recyclerview.widget.RecyclerView>
+
                         <androidx.constraintlayout.widget.Guideline
                             android:id="@+id/guideline"
                             android:layout_width="wrap_content"
