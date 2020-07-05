@@ -46,11 +46,12 @@ public class DataBaseManager {
     }
 
 
-    public void remove(PlantModel plant){
-        plantNode.child(plant.getId()).removeValue();
+    public void remove(String id){
+        plantNode.child(id).removeValue();
     }
 
     public void update(PlantModel plant){
+
         plantNode.child(plant.getId()).setValue(plant);
     }
 
