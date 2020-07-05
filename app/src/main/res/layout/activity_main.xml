@@ -196,7 +196,7 @@
         android:layout_gravity="center_horizontal"
         android:stateListAnimator="@animator/sl_state_animator"
         app:layout_behavior=".scallinglayout.ScalingLayoutBehavior"
-        >
+        tools:ignore="MissingClass">
 
 
         <LinearLayout

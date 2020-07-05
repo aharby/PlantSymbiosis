@@ -27,7 +27,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     DatabaseReference plantDBRef;
 
-    private ArrayList<PlantModel> plantsList = new ArrayList<>();
+    ArrayList<PlantModel> plantsList = new ArrayList<>();
     private PlantsAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void filter(String text) {
+    public ArrayList<PlantModel> returnArrayList(String text, ArrayList<PlantModel> plantsList) {
         ArrayList<PlantModel> filteredList = new ArrayList<> ();
         for (PlantModel plant : plantsList) {
             if ((plant.getName().toLowerCase())
@@ -86,7 +86,12 @@ public class MainActivity extends AppCompatActivity {
                 filteredList.add(plant);
             }
         }
-        mAdapter.filterList(filteredList);
+        return filteredList;
+        //mAdapter.filterList(filteredList);
+    }
+
+    public void filter(String text){
+        mAdapter.filterList(returnArrayList(text, plantsList));
     }
 
 
