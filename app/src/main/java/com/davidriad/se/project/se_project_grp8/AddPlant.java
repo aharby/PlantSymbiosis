@@ -18,9 +18,6 @@ public class AddPlant extends AppCompatActivity {
 
     Button buttonAddPlant,buttonAddHelps,buttonAddHelpedBy,buttonAvoid;
     EditText plantNameEditText, plantDescriptionEditText, plantImageUrlEditText, helps, helpedBy, avoidET;
-    FirebaseDatabase databaseInstance;
-    DatabaseReference plantNode;
-    DataBaseManager dbManager  ;
     ArrayList<String> helpsArray = new ArrayList<String>();
     ArrayList<String> helpedByArray = new ArrayList<String>();
     ArrayList<String> avoidArray = new ArrayList<String>();
@@ -30,7 +27,6 @@ public class AddPlant extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plant);
 
-        dbManager = new DataBaseManager();
         plantNameEditText = (EditText) findViewById(R.id.editTextName);
         plantDescriptionEditText = (EditText) findViewById(R.id.editTextDescription);
         plantImageUrlEditText = (EditText) findViewById(R.id.editTextImageUrl);
@@ -99,7 +95,7 @@ public class AddPlant extends AppCompatActivity {
         PlantModel p = plant;
         if( !plant.getName().isEmpty() && helpsArray.size() != 0 && helpedByArray.size() != 0 && avoidArray.size() !=0){
 
-            dbManager.insert(plant);
+            DataBaseManager.insert(plant);
             Toast.makeText(getApplicationContext(), "you have added a plant", Toast.LENGTH_LONG).show();
 
             plantNameEditText.setText("");

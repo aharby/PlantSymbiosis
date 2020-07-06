@@ -27,7 +27,7 @@ public class BFS {
     public void addEdge(int a, int b){
         if(!checkEdgeExists(a,b)) {
             adj.get(a).add(b);
-            adj.get(b).add(a);
+            //adj.get(b).add(a);
         }
     }
 

@@ -1,6 +1,9 @@
 package com.davidriad.se.project.se_project_grp8;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -9,19 +12,25 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataBaseManager {
-    FirebaseDatabase databaseInstance =FirebaseDatabase.getInstance();
-    DatabaseReference plantNode = databaseInstance.getReference("/plants");
+   static FirebaseDatabase databaseInstance =FirebaseDatabase.getInstance();
+   static DatabaseReference plantNode = databaseInstance.getReference("/plants");
 
 
-    public void insert(PlantModel plant){
+    public static void insert(PlantModel plant){
         plantNode.child(plant.getId()).setValue(plant);
     }
 
-    public void viewData(final PlantsAdapter mAdapter, final ArrayList plantsList){
+    public static void updateOnChange(final PlantsAdapter mAdapter, final ArrayList plantsList){
+
+        final ArrayList<String> plantsId = new ArrayList<>();
+        final Map<String, ArrayList<String>> plantAdjacencyList = new HashMap<>();
 
         plantNode.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //clearing the previous plant list
@@ -33,8 +42,19 @@ public class DataBaseManager {
                     PlantModel plant =  postSnapshot.getValue(PlantModel.class);
                     //adding plant to the list
                     plantsList.add(plant);
+
+                    plantsId.add(plant.getId());
+                    /*
+                    code for excluding avid plants should be here
+                    for now the plant adjacency list built by only by looking to list that plant helps
+                     */
+                    plant.getHelps().replaceAll(String::toLowerCase);
+                    plantAdjacencyList.put(plant.getId(),plant.getHelps());
                 }
                 mAdapter.notifyDataSetChanged();
+
+                Suggest.plantsId = plantsId;
+                Suggest.plantAdjacencyList = plantAdjacencyList;
             }
 
             @Override
@@ -46,11 +66,12 @@ public class DataBaseManager {
     }
 
 
-    public void remove(String id){
+
+    public static void remove(String id){
         plantNode.child(id).removeValue();
     }
 
-    public void update(PlantModel plant){
+    public static void update(PlantModel plant){
         plantNode.child(plant.getId()).setValue(plant);
     }
 

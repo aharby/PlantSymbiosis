@@ -97,7 +97,7 @@ public class Content extends AppCompatActivity {
         ib2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DataBaseManager().remove(id);
+                DataBaseManager.remove(id);
                 Toast.makeText(Content.this, "Successful deletion", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Content.this, MainActivity.class);
                 startActivity(intent);
