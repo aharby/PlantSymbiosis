@@ -95,7 +95,8 @@ public class AddPlant extends AppCompatActivity {
 
     }
 
-    private void addPlant(PlantModel plant) {
+    public void addPlant(PlantModel plant) {
+        PlantModel p = plant;
         if( !plant.getName().isEmpty() && helpsArray.size() != 0 && helpedByArray.size() != 0 && avoidArray.size() !=0){
 
             dbManager.insert(plant);

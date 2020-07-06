@@ -51,7 +51,6 @@ public class DataBaseManager {
     }
 
     public void update(PlantModel plant){
-
         plantNode.child(plant.getId()).setValue(plant);
     }
 
