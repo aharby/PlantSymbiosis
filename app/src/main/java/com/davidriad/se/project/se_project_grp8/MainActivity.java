@@ -20,13 +20,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
     DatabaseReference plantDBRef;
-    DataBaseManager dBManager;
 
     private ArrayList<PlantModel> plantsList = new ArrayList<>();
     private PlantsAdapter mAdapter;
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase plantDatabase = FirebaseDatabase.getInstance();
         plantDBRef = plantDatabase.getReference("/plants");
 
-        dBManager = new DataBaseManager();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         EditText search = findViewById(R.id.search);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new PlantsAdapter(plantsList,this);
         recyclerView.setAdapter(mAdapter);
-        dBManager.viewData(mAdapter, plantsList);
+        DataBaseManager.updateOnChange(mAdapter, plantsList);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
     }
 
