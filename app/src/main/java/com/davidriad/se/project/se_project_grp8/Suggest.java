@@ -6,36 +6,39 @@ import java.util.Map;
 
 public class Suggest {
 
-    private ArrayList<String> plantsId ;
-    private Map<String, ArrayList<String>> plantAdjacencyList;
+    private static ArrayList<String> plantsNameList =new ArrayList<>() ;
+    private static Map<String, ArrayList<String>> plantAdjacencyList = new HashMap<>();
 
-    private int numVertices;
-    private BFS bfs;
+    private static int numVertices;
+    BFS bfs;
 
-    public Suggest(ArrayList<String> plantsId, Map<String, ArrayList<String>> plantAdjacencyList) {
-        this.plantsId = plantsId;
-        this.plantAdjacencyList = plantAdjacencyList;
-
-        this.numVertices = plantsId.size();
-        this.bfs = new BFS(0,numVertices-1,numVertices);
-
+    public Suggest(ArrayList<String> names, Map<String, ArrayList<String>> adjacencyList) {
+        plantsNameList = names;
+        plantAdjacencyList = adjacencyList;
+        numVertices = plantsNameList.size();
+        bfs = new BFS(0,numVertices-1, numVertices);
         constructGraph();
     }
 
-    private void constructGraph(){
-       for (int i=0; i<plantsId.size();i++){
-           String plantId = plantsId.get(i);
-            for (int j=0; j< plantAdjacencyList.get(plantId).size(); j++){
-                String adjacentId = plantAdjacencyList.get(plantId).get(j);
-                bfs.addEdge(i,plantsId.indexOf(adjacentId));
+
+
+    public void constructGraph(){
+       for (int i=0; i<plantsNameList.size();i++){
+           String plantName = plantsNameList.get(i);
+            for (int j=0; j< plantAdjacencyList.get(plantName).size(); j++){
+                String adjacentPlant = plantAdjacencyList.get(plantName).get(j);
+                if (plantsNameList.indexOf(adjacentPlant)!= -1)
+                    bfs.addEdge(i,plantsNameList.indexOf(adjacentPlant));
            }
        }
    }
 
-   public ArrayList<Integer>  suggest (String plant1, String plant2){
-       int plant1Id = plantsId.indexOf(plant1.toLowerCase());
-       int plant2Id = plantsId.indexOf(plant2.toLowerCase());
-       bfs.makePath(plant1Id,plant2Id);
+
+
+    public  ArrayList<Integer> suggest (String plant1, String plant2){
+       int v1 = plantsNameList.indexOf(plant1.toLowerCase());
+       int v2 = plantsNameList.indexOf(plant2.toLowerCase());
+       bfs.makePath(v1,v2);
        ArrayList<Integer> path = bfs.getPath();
        return path;
    }

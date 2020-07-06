@@ -1,6 +1,7 @@
 package com.davidriad.se.project.se_project_grp8;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -26,7 +27,7 @@ public class DataBaseManager {
 
     public static void updateOnChange(final PlantsAdapter mAdapter, final ArrayList plantsList){
 
-        final ArrayList<String> plantsId = new ArrayList<>();
+        final ArrayList<String> plantsNameList = new ArrayList<>();
         final Map<String, ArrayList<String>> plantAdjacencyList = new HashMap<>();
 
         plantNode.addValueEventListener(new ValueEventListener() {
@@ -43,18 +44,21 @@ public class DataBaseManager {
                     //adding plant to the list
                     plantsList.add(plant);
 
-                    plantsId.add(plant.getId());
+                    plantsNameList.add(plant.getName().toLowerCase());
                     /*
                     code for excluding avid plants should be here
                     for now the plant adjacency list built by only by looking to list that plant helps
                      */
                     plant.getHelps().replaceAll(String::toLowerCase);
-                    plantAdjacencyList.put(plant.getId(),plant.getHelps());
+                    plantAdjacencyList.put(plant.getName().toLowerCase(),plant.getHelps());
                 }
                 mAdapter.notifyDataSetChanged();
 
-                Suggest.plantsId = plantsId;
-                Suggest.plantAdjacencyList = plantAdjacencyList;
+                Suggest suggest = new Suggest(plantsNameList,plantAdjacencyList );
+                ArrayList<Integer> path = new ArrayList<>();
+                path =suggest.suggest("alliums","lettuce");
+                Log.d("path", path.toString());
+
             }
 
             @Override
