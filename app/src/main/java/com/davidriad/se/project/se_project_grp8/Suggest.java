@@ -35,12 +35,16 @@ public class Suggest {
 
 
 
-    public  ArrayList<Integer> suggest (String plant1, String plant2){
+    public  ArrayList<String> suggest (String plant1, String plant2){
        int v1 = plantsNameList.indexOf(plant1.toLowerCase());
        int v2 = plantsNameList.indexOf(plant2.toLowerCase());
        bfs.makePath(v1,v2);
        ArrayList<Integer> path = bfs.getPath();
-       return path;
+       ArrayList<String> pathByNames = new ArrayList<>();
+       for(int i=0; i<path.size();i++){
+           pathByNames.add(plantsNameList.get(path.get(i)));
+       }
+       return pathByNames;
    }
 
 
