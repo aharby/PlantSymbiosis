@@ -3,31 +3,24 @@ package com.davidriad.se.project.se_project_grp8;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-
-import androidx.annotation.NonNull;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.junit.Test;
-
 import java.util.ArrayList;
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
-    DatabaseReference plantDBRef;
 
     private ArrayList<PlantModel> plantsList = new ArrayList<>();
     private PlantsAdapter mAdapter;
@@ -35,10 +28,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        FirebaseDatabase plantDatabase = FirebaseDatabase.getInstance();
-        plantDBRef = plantDatabase.getReference("/plants");
-
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         EditText search = findViewById(R.id.search);
@@ -53,12 +42,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 filter(s.toString());
@@ -66,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         FloatingActionButton fab = findViewById(R.id.fab_feeds);
         FloatingActionButton fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         FloatingActionButton fabSuggest = (FloatingActionButton) findViewById(R.id.fabSuggest);
+
         fab.setOnClickListener(new View.OnClickListener() {
             boolean isFABOpen = false;
             @Override
@@ -103,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private void filter(String text) {
