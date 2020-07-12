@@ -68,7 +68,27 @@ public class MainActivity extends AppCompatActivity {
 
 
         FloatingActionButton fab = findViewById(R.id.fab_feeds);
+        FloatingActionButton fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
+        FloatingActionButton fabSuggest = (FloatingActionButton) findViewById(R.id.fabSuggest);
         fab.setOnClickListener(new View.OnClickListener() {
+            boolean isFABOpen = false;
+            @Override
+            public void onClick(View v) {
+                if(!isFABOpen){
+                    isFABOpen=true;
+                    fabAdd.animate().translationY(-getResources().getDimension(R.dimen.standard_65));
+                    fabSuggest.animate().translationY(-getResources().getDimension(R.dimen.standard_125));
+
+                }else{
+                    isFABOpen = false;
+                    fabAdd.animate().translationY(0);
+                    fabSuggest.animate().translationY(0);
+                }
+
+            }
+        });
+
+        fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddPlant.class);
@@ -76,7 +96,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        fabSuggest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SuggestActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
