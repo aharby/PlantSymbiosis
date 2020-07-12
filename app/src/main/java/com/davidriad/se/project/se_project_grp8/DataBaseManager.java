@@ -54,10 +54,10 @@ public class DataBaseManager {
                 }
                 mAdapter.notifyDataSetChanged();
 
-                Suggest suggest = new Suggest(plantsNameList,plantAdjacencyList );
-                ArrayList<String> path = new ArrayList<>();
-                path =suggest.suggest("a","lettuce");
-                Log.d("path", path.toString());
+//                Suggest suggest = new Suggest(plantsNameList,plantAdjacencyList );
+//                ArrayList<String> path = new ArrayList<>();
+//                path =suggest.suggest("carrots","lettuce");
+//                Log.d("path", path.toString());
 
             }
 
