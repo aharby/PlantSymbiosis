@@ -20,6 +20,7 @@ public class DataBaseManager {
    static FirebaseDatabase databaseInstance =FirebaseDatabase.getInstance();
    static DatabaseReference plantNode = databaseInstance.getReference("/plants");
 
+   static  Suggest suggestInstance;
 
     public static void insert(PlantModel plant){
         plantNode.child(plant.getId()).setValue(plant);
@@ -54,10 +55,10 @@ public class DataBaseManager {
                 }
                 mAdapter.notifyDataSetChanged();
 
-//                Suggest suggest = new Suggest(plantsNameList,plantAdjacencyList );
-//                ArrayList<String> path = new ArrayList<>();
-//                path =suggest.suggest("carrots","lettuce");
-//                Log.d("path", path.toString());
+                suggestInstance = new Suggest(plantsNameList,plantAdjacencyList );
+                ArrayList<String> path = new ArrayList<>();
+                path =suggestInstance.suggest("carrots","lettuce");
+                Log.d("path", path.toString());
 
             }
 
