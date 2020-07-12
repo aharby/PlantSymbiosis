@@ -25,7 +25,7 @@ public class SuggestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /*
-                here your need to get two plants names for the suggestion; then pass them to suggest(); that witll return the pass
+                here your need to get two plants names for the suggestion; then pass them to suggest(); that will return the path
                  */
                ArrayList<String>  path = DataBaseManager.suggestInstance.suggest("carrots","lettuce");
 
