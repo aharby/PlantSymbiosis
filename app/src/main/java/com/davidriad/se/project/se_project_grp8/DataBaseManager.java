@@ -56,7 +56,7 @@ public class DataBaseManager {
 
                 Suggest suggest = new Suggest(plantsNameList,plantAdjacencyList );
                 ArrayList<String> path = new ArrayList<>();
-                path =suggest.suggest("alliums","lettuce");
+                path =suggest.suggest("a","lettuce");
                 Log.d("path", path.toString());
 
             }
