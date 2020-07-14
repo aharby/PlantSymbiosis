@@ -22,6 +22,7 @@ class EditPlantDataActivity : AppCompatActivity() {
         var plantDBRef: DatabaseReference? = null
         var plant: PlantModel
 
+
         val nameET = findViewById<EditText>(R.id.editTextName)
         val descriptionET = findViewById<EditText>(R.id.editTextDescription)
         val imageURLEditText = findViewById<EditText>(R.id.editTextImageUrl)
