@@ -17,9 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:backgroundTint="#478F4A"
+        android:backgroundTint="#4ACA4F"
         android:clickable="true"
-        android:src="@android:drawable/ic_menu_view" />
+        android:src="@drawable/ic_baseline_emoji_nature_24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
@@ -37,9 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:backgroundTint="#93D179"
+        android:backgroundTint="#4ACA4F"
         android:clickable="true"
-        android:src="@android:drawable/arrow_up_float"
+        android:src="@drawable/ic_baseline_arrow_drop_up_24"
         app:layout_anchorGravity="bottom|right|end" />
 
     <com.google.android.material.appbar.AppBarLayout
