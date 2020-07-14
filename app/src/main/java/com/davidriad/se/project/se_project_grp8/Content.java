@@ -32,8 +32,7 @@ public class Content extends AppCompatActivity {
 //        nameTv = (TextView) findViewById(R.id.name);
         backArrow = (ImageView) findViewById(R.id.backArrow);
         details_image = (ImageView) findViewById(R.id.details_plant_image);
-
-
+        descriptionTv = (TextView) findViewById(R.id.desc);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.mToolbar);
         TextView textView = (TextView) mToolbar.findViewById(R.id.plantName);
         setSupportActionBar(mToolbar);
@@ -60,6 +59,7 @@ public class Content extends AppCompatActivity {
         ArrayList<String> plantNames = getIntent().getStringArrayListExtra("plantNames");
 
         textView.setText(plantname);
+        descriptionTv.setText(plantdescription);
 
         //helps recycler view
         RecyclerView helpsRecyclerView = findViewById(R.id.rvHelps);
@@ -85,16 +85,7 @@ public class Content extends AppCompatActivity {
         AvoidAdapter avoidAdapter = new AvoidAdapter(avoid, this);
         avoidRecycler.setAdapter(avoidAdapter);
 
-        //switch to edit activity
 
-        ImageButton ib1 = (ImageButton) findViewById(R.id.edit);
-        ib1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(Content.this, "In one sec you´ll be able to edit", Toast.LENGTH_SHORT).show();
-            }
-        });
         ImageButton ib2 = (ImageButton) findViewById(R.id.delete);
         ib2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,24 +99,24 @@ public class Content extends AppCompatActivity {
         });
 
         ImageButton editPlantButton = (ImageButton) findViewById(R.id.edit);
-//        editPlantButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Content.this, EditPlantDataActivity.class);
-//                intent.putExtra("id", id);
-//                intent.putExtra("name", plantname);
-//                intent.putExtra("description", plantdescription);
-//                intent.putExtra("image", plantImage);
-//                intent.putStringArrayListExtra("helps", helps);
-//                intent.putStringArrayListExtra("helpedBy", helpedBy);
-//                intent.putStringArrayListExtra("avoid", avoid);
-//                intent.putStringArrayListExtra("plantNames",plantNames);
-//
-//                startActivity(intent);
-//            }
-//
-//        });
+        editPlantButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(Content.this, EditPlantDataActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("name", plantname);
+                intent.putExtra("description", plantdescription);
+                intent.putExtra("image", plantImage);
+                intent.putStringArrayListExtra("helps", helps);
+                intent.putStringArrayListExtra("helpedBy", helpedBy);
+                intent.putStringArrayListExtra("avoid", avoid);
+                intent.putStringArrayListExtra("plantNames", plantNames);
+
+                startActivity(intent);
+            }
+
+        });
     }
 
 

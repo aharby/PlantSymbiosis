@@ -24,6 +24,7 @@ import java.util.List;
 public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHolder> {
     private Context context;
     private List<PlantModel> plantsList;
+    private ArrayList<String> plantNames = new ArrayList<>();
 
     public void filterList(ArrayList<PlantModel> filteredList) {
         plantsList = filteredList;
@@ -59,6 +60,7 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final PlantModel plant = plantsList.get(position);
+        plantNames.add(plant.getName());
         holder.description.setText(plant.getDescription());
         holder.name.setText(plant.getName());
         Glide
@@ -77,6 +79,8 @@ public class PlantsAdapter extends RecyclerView.Adapter<PlantsAdapter.MyViewHold
                 intent.putStringArrayListExtra("helps",plant.getHelps());
                 intent.putStringArrayListExtra("helpedBy",plant.getHelpedBy());
                 intent.putStringArrayListExtra("avoid",plant.getAvoid());
+                intent.putStringArrayListExtra("plantNames",plantNames);
+
                 context.startActivity(intent);
             }
 

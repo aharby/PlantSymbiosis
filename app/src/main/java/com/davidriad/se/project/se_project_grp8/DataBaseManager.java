@@ -17,16 +17,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataBaseManager {
-   static FirebaseDatabase databaseInstance =FirebaseDatabase.getInstance();
-   static DatabaseReference plantNode = databaseInstance.getReference("/plants");
+    static FirebaseDatabase databaseInstance = FirebaseDatabase.getInstance();
+    static DatabaseReference plantNode = databaseInstance.getReference("/plants");
 
-   static  Suggest suggestInstance;
+    static Suggest suggestInstance;
 
-    public static void insert(PlantModel plant){
+    public static void insert(PlantModel plant) {
         plantNode.child(plant.getId()).setValue(plant);
     }
 
-    public static void updateOnChange(final PlantsAdapter mAdapter, final ArrayList plantsList){
+    public static void updateOnChange(final PlantsAdapter mAdapter, final ArrayList plantsList) {
 
         final ArrayList<String> plantsNameList = new ArrayList<>();
         final Map<String, ArrayList<String>> plantAdjacencyList = new HashMap<>();
@@ -42,7 +42,7 @@ public class DataBaseManager {
                 ArrayList<String> helps;
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //getting plant
-                    PlantModel plant =  postSnapshot.getValue(PlantModel.class);
+                    PlantModel plant = postSnapshot.getValue(PlantModel.class);
                     //adding plant to the list
                     plantsList.add(plant);
 
@@ -52,14 +52,14 @@ public class DataBaseManager {
                     for now the plant adjacency list built by only by looking to list that plant helps
                      */
                     helps = new ArrayList<>(plant.getHelps());
-                   helps.replaceAll(String::toLowerCase);
-                    plantAdjacencyList.put(plant.getName().toLowerCase(),helps);
+                    helps.replaceAll(String::toLowerCase);
+                    plantAdjacencyList.put(plant.getName().toLowerCase(), helps);
                 }
                 mAdapter.notifyDataSetChanged();
 
-                suggestInstance = new Suggest(plantsNameList,plantAdjacencyList );
+                suggestInstance = new Suggest(plantsNameList, plantAdjacencyList);
                 ArrayList<String> path = new ArrayList<>();
-                path =suggestInstance.suggest("carrots","lettuce");
+                path = suggestInstance.suggest("carrots", "lettuce");
                 Log.d("path", path.toString());
 
             }
@@ -73,13 +73,13 @@ public class DataBaseManager {
     }
 
 
-
-    public static void remove(String id){
+    public static void remove(String id) {
         plantNode.child(id).removeValue();
     }
 
-    public static void update(PlantModel plant){
+    public static void update(PlantModel plant) {
         plantNode.child(plant.getId()).setValue(plant);
+
     }
 
 }

@@ -32,11 +32,11 @@
                 android:layout_height="fill_parent"
                 app:layout_collapseMode="parallax"
                 android:scaleType="centerCrop">
-            <ImageView
-                android:id="@+id/details_plant_image"
-                android:layout_width="match_parent"
-                android:layout_height="360dp"
-                android:layout_marginTop="?attr/actionBarSize"></ImageView>
+                <ImageView
+                    android:id="@+id/details_plant_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:layout_marginTop="?attr/actionBarSize" />
             </LinearLayout>
 
             <androidx.appcompat.widget.Toolbar
@@ -81,6 +81,7 @@
                 <ImageButton
                     android:id="@+id/delete"
                     android:layout_width="24dp"
+                    android:background="@null"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     app:layout_constraintLeft_toRightOf="@id/edit"
@@ -92,6 +93,7 @@
                     />
 
                     <ImageButton
+                        android:background="@null"
                         android:id="@+id/edit"
                         android:layout_height="24dp"
                         android:layout_width="24dp"
@@ -164,7 +166,38 @@
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_marginTop="8dp"/>
 
+
+
                         <TextView
+                            android:layout_marginTop="32dp"
+                            android:id="@+id/descriptinTV"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Description"
+                            android:textSize="18sp"
+                            app:layout_constraintTop_toBottomOf="@id/view"
+                            app:layout_constraintEnd_toEndOf="@id/guideline2"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@id/guideline"
+                            app:layout_constraintVertical_bias="0.002"
+                            android:layout_marginBottom="16dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/desc"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            app:layout_constraintEnd_toEndOf="@id/guideline2"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/descriptinTV"
+                            app:layout_constraintVertical_bias="0.002"
+                            android:layout_marginTop="16dp"
+                            android:text="This is the desc of ahtefnj kasndkjas das fkjsdnfkjasnfkjan"/>
+
+                        <TextView
+                            android:layout_marginTop="16dp"
                             android:id="@+id/helps"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -174,8 +207,9 @@
                             app:layout_constraintEnd_toEndOf="@id/guideline2"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="@id/guideline"
-                            app:layout_constraintTop_toBottomOf="@+id/view"
-                            app:layout_constraintVertical_bias="0.002" />
+                            app:layout_constraintTop_toBottomOf="@+id/desc"
+                            app:layout_constraintVertical_bias="0.002"
+                            />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvHelps"

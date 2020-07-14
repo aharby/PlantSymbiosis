@@ -9,12 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".EditPlantDataActivity"></activity>
         <activity
             android:name=".editPlantDataActivity"
-            android:label="@string/title_activity_edit_plant_data">
-        </activity>
-
-
+            android:label="@string/title_activity_edit_plant_data"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
