@@ -64,8 +64,12 @@ public class MainActivity extends AppCompatActivity {
                     isFABOpen=true;
                     fabAdd.animate().translationY(-getResources().getDimension(R.dimen.standard_65));
                     fabSuggest.animate().translationY(-getResources().getDimension(R.dimen.standard_125));
+                    fab.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24);
+
+
 
                 }else{
+                    fab.setImageResource(R.drawable.ic_baseline_arrow_drop_up_24);
                     isFABOpen = false;
                     fabAdd.animate().translationY(0);
                     fabSuggest.animate().translationY(0);

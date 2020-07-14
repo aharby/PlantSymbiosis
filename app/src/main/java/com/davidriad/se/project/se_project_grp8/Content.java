@@ -57,6 +57,8 @@ public class Content extends AppCompatActivity {
         ArrayList<String> helps = getIntent().getStringArrayListExtra("helps");
         ArrayList<String> helpedBy = getIntent().getStringArrayListExtra("helpedBy");
         ArrayList<String> avoid = getIntent().getStringArrayListExtra("avoid");
+        ArrayList<String> plantNames = getIntent().getStringArrayListExtra("plantNames");
+
         textView.setText(plantname);
 
         //helps recycler view
@@ -89,7 +91,7 @@ public class Content extends AppCompatActivity {
         ib1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openEditPlantDataActivity();
+
                 Toast.makeText(Content.this, "In one sec you´ll be able to edit", Toast.LENGTH_SHORT).show();
             }
         });
@@ -104,13 +106,29 @@ public class Content extends AppCompatActivity {
             }
 
         });
-    }
-        public void openEditPlantDataActivity() {
-            Intent intent = new Intent(Content.this, editPlantDataActivity.class);
-            intent.putExtra("id",id);
-            startActivity(intent);
 
-        }
+        ImageButton editPlantButton = (ImageButton) findViewById(R.id.edit);
+//        editPlantButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Content.this, EditPlantDataActivity.class);
+//                intent.putExtra("id", id);
+//                intent.putExtra("name", plantname);
+//                intent.putExtra("description", plantdescription);
+//                intent.putExtra("image", plantImage);
+//                intent.putStringArrayListExtra("helps", helps);
+//                intent.putStringArrayListExtra("helpedBy", helpedBy);
+//                intent.putStringArrayListExtra("avoid", avoid);
+//                intent.putStringArrayListExtra("plantNames",plantNames);
+//
+//                startActivity(intent);
+//            }
+//
+//        });
+
     }
+
+
+}
 
 
