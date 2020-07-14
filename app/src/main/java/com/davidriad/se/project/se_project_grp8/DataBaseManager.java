@@ -39,6 +39,7 @@ public class DataBaseManager {
                 plantsList.clear();
 
                 //iterating through all the nodes
+                ArrayList<String> helps;
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //getting plant
                     PlantModel plant =  postSnapshot.getValue(PlantModel.class);
@@ -50,8 +51,9 @@ public class DataBaseManager {
                     code for excluding avid plants should be here
                     for now the plant adjacency list built by only by looking to list that plant helps
                      */
-                    plant.getHelps().replaceAll(String::toLowerCase);
-                    plantAdjacencyList.put(plant.getName().toLowerCase(),plant.getHelps());
+                    helps = new ArrayList<>(plant.getHelps());
+                   helps.replaceAll(String::toLowerCase);
+                    plantAdjacencyList.put(plant.getName().toLowerCase(),helps);
                 }
                 mAdapter.notifyDataSetChanged();
 

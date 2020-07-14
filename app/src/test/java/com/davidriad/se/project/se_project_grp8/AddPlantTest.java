@@ -28,24 +28,17 @@ import java.io.IOException;
 
 public class AddPlantTest {
 
-    AddPlant addPlant = mock(AddPlant.class);
-
-    MainActivity main = new MainActivity();
-    Context context = main.getApplicationContext();
-
-
-
-    DatabaseReference localNode = main.plantDBRef;
-    DataSnapshot dataSnapshot;
 
     @Before
     public  void beforeMethod(){
+
 
     }
 
     @Test
     public void testAddPlant(){
 
+        firebase
 
         PlantModel mockPlant = mock(PlantModel.class);
         addPlant.addPlant(mockPlant);
