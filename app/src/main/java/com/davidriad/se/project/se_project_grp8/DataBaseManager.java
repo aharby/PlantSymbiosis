@@ -53,11 +53,11 @@ public class DataBaseManager {
                     plantAdjacencyList.put(plant.getName().toLowerCase(),plant.getHelps());
                 }
                 mAdapter.notifyDataSetChanged();
-
-                Suggest suggest = new Suggest(plantsNameList,plantAdjacencyList );
-                ArrayList<String> path = new ArrayList<>();
-                path =suggest.suggest("alliums","lettuce");
-                Log.d("path", path.toString());
+//
+//                Suggest suggest = new Suggest(plantsNameList,plantAdjacencyList );
+//                ArrayList<String> path = new ArrayList<>();
+//                path =suggest.suggest("alliums","lettuce");
+//                Log.d("path", path.toString());
 
             }
 

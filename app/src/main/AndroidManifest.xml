@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".editPlantDataActivity"
+            android:name=".EditPlantDataActivity"
             android:label="@string/title_activity_edit_plant_data">
         </activity>
 

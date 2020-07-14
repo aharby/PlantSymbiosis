@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class AddPlant extends AppCompatActivity {
 
-    Button buttonAddPlant,buttonAddHelps,buttonAddHelpedBy,buttonAvoid;
+    Button buttonAddPlant, buttonAddHelps, buttonAddHelpedBy, buttonAvoid;
     EditText plantNameEditText, plantDescriptionEditText, plantImageUrlEditText, helps, helpedBy, avoidET;
     ArrayList<String> helpsArray = new ArrayList<String>();
     ArrayList<String> helpedByArray = new ArrayList<String>();
@@ -43,7 +43,7 @@ public class AddPlant extends AppCompatActivity {
         buttonAddHelps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!helps.getText().equals("")){
+                if (!helps.getText().equals("")) {
                     helpsArray.add(helps.getText().toString());
                 }
                 helps.setText("");
@@ -53,20 +53,20 @@ public class AddPlant extends AppCompatActivity {
         //helped by
         buttonAddHelpedBy.setOnClickListener(
                 new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!helpedBy.getText().equals("")){
-                    helpedByArray.add(helpedBy.getText().toString());
-                }
-                helpedBy.setText("");
-            }
-        });
+                    @Override
+                    public void onClick(View v) {
+                        if (!helpedBy.getText().equals("")) {
+                            helpedByArray.add(helpedBy.getText().toString());
+                        }
+                        helpedBy.setText("");
+                    }
+                });
 
         //avoid
         buttonAvoid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!avoidET.getText().equals("")){
+                if (!avoidET.getText().equals("")) {
                     avoidArray.add(avoidET.getText().toString());
                 }
                 avoidET.setText("");
@@ -93,7 +93,7 @@ public class AddPlant extends AppCompatActivity {
 
     public void addPlant(PlantModel plant) {
         PlantModel p = plant;
-        if( !plant.getName().isEmpty() && helpsArray.size() != 0 && helpedByArray.size() != 0 && avoidArray.size() !=0){
+        if (!plant.getName().isEmpty() && helpsArray.size() != 0 && helpedByArray.size() != 0 && avoidArray.size() != 0) {
 
             DataBaseManager.insert(plant);
             Toast.makeText(getApplicationContext(), "you have added a plant", Toast.LENGTH_LONG).show();
@@ -104,8 +104,7 @@ public class AddPlant extends AppCompatActivity {
             helpsArray.clear();
             helpedByArray.clear();
             avoidArray.clear();
-        }
-        else{
+        } else {
             Toast.makeText(getApplicationContext(), "Make sure you entered data", Toast.LENGTH_LONG).show();
         }
     }
