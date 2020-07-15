@@ -69,18 +69,12 @@ public class BFS {
                     q.add(adj.get(u).get(i));
 
                     if(adj.get(u).get(i)== e){
-                        q.clear();
                         return true;
                     }
-
-                    //System.out.println(pre);
-                    //System.out.println(adj.get(u).get(i));
-
 
                 }
             }
         }
-        q.clear();
         return false;
     }
 
@@ -88,13 +82,14 @@ public class BFS {
         start=s;
         end=e;
         path.clear();
-        if(!doBFS(s,e))
-            return;
+        if(!doBFS(s,e)){
+            pre.clear();
+            vis.clear();
+            return;}
         int crawl = e;
         path.add(crawl);
         while(pre.get(crawl) != -1){
             path.add(pre.get(crawl));
-            //System.out.println(crawl);
             crawl= pre.get(crawl);
         }
         pre.clear();
