@@ -69,6 +69,7 @@ public class BFS {
                     q.add(adj.get(u).get(i));
 
                     if(adj.get(u).get(i)== e){
+                        q.clear();
                         return true;
                     }
 
@@ -79,21 +80,24 @@ public class BFS {
                 }
             }
         }
-
+        q.clear();
         return false;
     }
 
     public void makePath(int s, int e){
         start=s;
         end=e;
+        path.clear();
         if(!doBFS(s,e))
             return;
         int crawl = e;
         path.add(crawl);
         while(pre.get(crawl) != -1){
             path.add(pre.get(crawl));
-            System.out.println(crawl);
+            //System.out.println(crawl);
             crawl= pre.get(crawl);
         }
+        pre.clear();
+        vis.clear();
     }
 }

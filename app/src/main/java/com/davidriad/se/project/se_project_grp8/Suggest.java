@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class Suggest {
 
-    private static ArrayList<String> plantsNameList =new ArrayList<>() ;
-    private static Map<String, ArrayList<String>> plantAdjacencyList = new HashMap<>();
+    static ArrayList<String> plantsNameList =new ArrayList<>() ;
+    static Map<String, ArrayList<String>> plantAdjacencyList = new HashMap<>();
 
     private static int numVertices;
     BFS bfs;

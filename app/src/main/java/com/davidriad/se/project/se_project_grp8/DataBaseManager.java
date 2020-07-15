@@ -58,9 +58,7 @@ public class DataBaseManager {
                 mAdapter.notifyDataSetChanged();
 
                 suggestInstance = new Suggest(plantsNameList, plantAdjacencyList);
-                ArrayList<String> path = new ArrayList<>();
-                path = suggestInstance.suggest("carrots", "lettuce");
-                Log.d("path", path.toString());
+
 
             }
 
