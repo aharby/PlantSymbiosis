@@ -1,0 +1,56 @@
+[1mdiff --cc app/src/main/java/com/davidriad/se/project/se_project_grp8/PlantsAdapter.java[m
+[1mindex 8181dae,194163a..0000000[m
+[1m--- a/app/src/main/java/com/davidriad/se/project/se_project_grp8/PlantsAdapter.java[m
+[1m+++ b/app/src/main/java/com/davidriad/se/project/se_project_grp8/PlantsAdapter.java[m
+[36m@@@ -7,9 -7,9 +7,10 @@@[m [mimport android.content.Intent[m
+  import android.view.LayoutInflater;[m
+  import android.view.View;[m
+  import android.view.ViewGroup;[m
+[32m +import android.widget.ImageView;[m
+  import android.widget.RelativeLayout;[m
+  import android.widget.TextView;[m
+[32m+ import android.widget.Toast;[m
+  [m
+  import androidx.annotation.NonNull;[m
+  import androidx.recyclerview.widget.RecyclerView;[m
+[36m@@@ -48,26 -45,19 +50,39 @@@[m [mpublic class PlantsAdapter extends Recy[m
+      }[m
+      @Override[m
+      public void onBindViewHolder(MyViewHolder holder, int position) {[m
+[31m-         PlantModel plant = plantsList.get(position);[m
+[32m+         final PlantModel plant = plantsList.get(position);[m
+          holder.description.setText(plant.getDescription());[m
+          holder.name.setText(plant.getName());[m
+[32m++<<<<<<< HEAD[m
+[32m +[m
+[32m +        Glide.with(context)[m
+[32m +                .load(plant.getImage())[m
+[32m +                .into(holder.image);[m
+[32m +[m
+[32m +//        holder.relative.setOnClickListener(new View.OnClickListener(){[m
+[32m +//            @Override[m
+[32m +//            public void onClick(View view){[m
+[32m +//                Intent intent = new Intent(context,PlantModel.class);[m
+[32m +//                intent.putExtra("name",PlantModel.getName());[m
+[32m +//                intent.putExtra("description",PlantModel.getDescription());[m
+[32m +//                context.startActivity(intent);[m
+[32m +//            }[m
+[32m +//[m
+[32m +//        });[m
+[32m +[m
+[32m +[m
+[32m++=======[m
+[32m+         holder.itemView.setOnClickListener(new View.OnClickListener(){[m
+[32m+             @Override[m
+[32m+             public void onClick(View view){[m
+[32m+                 Intent intent = new Intent(context,Content.class);[m
+[32m+                 intent.putExtra("name",plant.getName());[m
+[32m+                 intent.putExtra("description",plant.getDescription());[m
+[32m+                 context.startActivity(intent);[m
+[32m+             }[m
+[32m+ [m
+[32m+         });[m
+[32m++>>>>>>> 3cb056d04ad79ce3494be29feb664e89c12a3aae[m
+      }[m
+      @Override[m
+      public int getItemCount() {[m
